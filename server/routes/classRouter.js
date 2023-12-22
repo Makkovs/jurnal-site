@@ -2,12 +2,14 @@ const Router = require("express");
 
 const router = new Router();
 
-router.post("/create");
-router.post("/delete");
-router.post("/set-year");
-router.post("/set-letter");
-router.post("/set-teacher");
-router.get("/get");
-router.get("/get-all");
+const classController = require("../controllers/classController");
+
+router.post("/create", classController.createClass);
+router.post("/delete", classController.deleteClass);
+router.post("/set-year", classController.setYear);
+router.post("/set-letter", classController.setLetter);
+router.post("/set-teacher", classController.setTeacher);
+router.get("/get", classController.getOneClass);
+router.get("/get-all", classController.getAllClasses);
 
 module.exports = router;

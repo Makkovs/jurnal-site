@@ -2,8 +2,10 @@ const Router = require("express");
 
 const router = new Router();
 
-router.post("/create");
-router.post("/delete");
-router.get("/get");
+const schoolController = require("../controllers/schoolController");
+
+router.post("/create", schoolController.createSchool);
+router.post("/delete", schoolController.deleteSchool);
+router.get("/get", schoolController.getSchool);
 
 module.exports = router;

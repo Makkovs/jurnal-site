@@ -3,7 +3,7 @@ const { DataTypes } = require("sequelize");
 
 const School = sequelize.define("school", {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-    schoolname: { type: DataTypes.STRING, allowNull: false },
+    schoolName: { type: DataTypes.STRING, allowNull: false },
 });
 
 const Class = sequelize.define("class", {
