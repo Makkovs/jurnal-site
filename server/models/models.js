@@ -27,6 +27,7 @@ const User = sequelize.define("user", {
     name: { type: DataTypes.STRING, allowNull: false },
     surname: { type: DataTypes.STRING, allowNull: false },
     fathername: { type: DataTypes.STRING, allowNull: false },
+    login: { type: DataTypes.STRING, allowNull: false },
     password: { type: DataTypes.STRING, allowNull: false },
     role: { type: DataTypes.STRING, allowNull: false },
 });
@@ -70,7 +71,7 @@ User.hasMany(Mark);
 Mark.belongsTo(User);
 
 User.hasMany(Homework);
-User.belongsTo(Homework);
+Homework.belongsTo(User);
 
 module.exports = {
     School,

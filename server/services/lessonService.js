@@ -6,7 +6,7 @@ class LessonService {
     async createLesson(lessonName, schoolId) {
         const candidate = await Lesson.findOne({ where: { name: lessonName, schoolId } });
         if (candidate) {
-            APIError.errorAlreadyExist();
+            throw APIError.errorAlreadyExist(); 
         };
 
         const newLesson = await Lesson.create({ name: lessonName, schoolId });
@@ -16,7 +16,7 @@ class LessonService {
     async deleteLesson(lessonId) {
         const candidate = await Lesson.findOne({ where: { id: lessonId } });
         if (!candidate) {
-            APIError.errorCandidateNotFound();
+            throw APIError.errorCandidateNotFound();
         };
 
         await Lesson.destroy({ where: { id: lessonId } });
@@ -26,7 +26,7 @@ class LessonService {
     async getOneLesson(lessonId) {
         const candidate = await Lesson.findOne({ where: { id: lessonId } });
         if (!candidate) {
-            APIError.errorCandidateNotFound();
+            throw APIError.errorCandidateNotFound();
         };
 
         return candidate;
@@ -43,7 +43,7 @@ class LessonService {
         };
         
         if (!lessons){
-            APIError.errorCandidateNotFound(null)
+            throw APIError.errorCandidateNotFound(null)
         };
         return lessons;
     };

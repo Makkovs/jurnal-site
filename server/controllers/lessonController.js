@@ -1,55 +1,51 @@
-const errorHandler = require("../utils/errorHandler");
+const errorHandler = require("../middlewares/errorHandler");
 const APIError = require("../utils/APIError");
 const lessonService = require("../services/lessonService");
 
 class LessonController {
 
-    async createLesson (req, res){
-        errorHandler(async () => {
+    async createLesson(req, res, next) {
+        try {
             const { lessonName, schoolId } = req.body;
-            if (!lessonName || !schoolId){
-                APIError.errorUndefinedArg();
-            };
 
             const newLesson = await lessonService.createLesson(lessonName, schoolId)
-            return res.json({newLesson})
-        })(req, res);
+            return res.json({ newLesson })
+        } catch (error) {
+            next(error);
+        };
     };
 
-    async deleteLesson (req, res){
-        errorHandler(async () => {
+    async deleteLesson(req, res, next) {
+        try {
             const { lessonId } = req.body;
-            if (!lessonId){
-                APIError.errorUndefinedArg();
-            };
 
             const message = await lessonService.deleteLesson(lessonId);
             return res.json(message);
-        })(req, res);
+        } catch (error) {
+            next(error);
+        };
     };
 
-    async getOneLesson(req, res){
-        errorHandler(async () => { 
+    async getOneLesson(req, res, next) {
+        try {
             const { lessonId } = req.query;
-            if (!lessonId){
-                APIError.errorUndefinedArg();
-            };
 
             const lesson = await lessonService.getOneLesson(lessonId);
             return res.json(lesson);
-        })(req, res);
+        } catch (error) {
+            next(error);
+        };
     };
 
-    async getAllLesson(req, res){
-        errorHandler(async () => {
+    async getAllLesson(req, res, next) {
+        try {
             const { schoolId } = req.query;
-            if (!schoolId){
-                APIError.errorUndefinedArg();
-            };
 
             const lessons = await lessonService.getAllLesson(schoolId);
             return res.json(lessons);
-        })(req, res);
+        } catch (error) {
+            next(error);
+        };
     };
 };
 

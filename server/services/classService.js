@@ -5,11 +5,11 @@ class ClassService {
 
     async createClass(year, letter, teacherId, schoolId) {
         const candidate = await Class.findOne({
-            where: { year, letter, schoolId, classTeacherId: teacherId, }
+            where: { year, letter, schoolId }
         });
 
         if (candidate) {
-            APIError.errorAlreadyExist("class");
+            throw APIError.errorAlreadyExist("class");
         };
 
         const newClass = await Class.create({ year, letter, schoolId, classTeacherId: teacherId, });
@@ -22,11 +22,11 @@ class ClassService {
         });
 
         if (!candidate) {
-            APIError.errorCandidateNotFound(classId);
+            throw APIError.errorCandidateNotFound(classId);
         };
 
         await Class.destroy({ where: { id: classId } });
-        return { message: `Class with id ${classId} was deleted!` }
+        return { message: `Class with id ${classId} was deleted!` };
     };
 
     async setYear(classId, year) {
@@ -34,21 +34,21 @@ class ClassService {
             where: { id: classId }
         });
         if (!candidate) {
-            APIError.errorCandidateNotFound(classId);
+            throw APIError.errorCandidateNotFound(classId);
         };
 
         const candidateLetter = await Class.findOne({
-            where: { year, letter: candidate.letter, schoolId: candidate }
+            where: { year, letter: candidate.letter, schoolId: candidate.schoolId }
         });
         if (candidateLetter) {
-            APIError.errorAlreadyExist("class")
+            throw APIError.errorAlreadyExist("class")
         };
 
         await Class.update(
             { year: year },
             { where: { id: classId } }
         );
-        return { message: `Class with id ${classId} was updated!` }
+        return { message: `Class with id ${classId} was updated!` };
     };
 
     async setLetter(classId, letter) {
@@ -56,21 +56,21 @@ class ClassService {
             where: { id: classId }
         });
         if (!candidate) {
-            APIError.errorCandidateNotFound(classId);
+            throw APIError.errorCandidateNotFound(classId);
         };
 
         const candidateYear = await Class.findOne({
             where: { letter, year: candidate.year, schoolId: candidate.schoolId }
         });
         if (candidateYear) {
-            APIError.errorAlreadyExist("class");
+            throw APIError.errorAlreadyExist("class");
         };
 
         await Class.update(
             { letter: letter },
             { where: { id: classId } }
         );
-        return { message: `Class with id ${classId} was updated!` }
+        return { message: `Class with id ${classId} was updated!` };
     };
 
     async setTeacher(classId, teacherId) {
@@ -78,40 +78,32 @@ class ClassService {
             where: { id: classId }
         });
         if (!candidate) {
-            APIError.errorCandidateNotFound(classId);
+            throw APIError.errorCandidateNotFound(classId);
         };
 
         await Class.update(
             { classTeacherId: teacherId },
             { where: { id: classId } }
         );
-        return { message: `Class with id ${classId} was updated!` }
+        return { message: `Class with id ${classId} was updated!` };
     };
 
     async getOneClass(classId) {
         const candidate = await Class.findOne({
-            where: { id: classId}
+            where: { id: classId }
         });
-        if (!candidate){
-            APIError.errorCandidateNotFound(classId)
+        if (!candidate) {
+            throw APIError.errorCandidateNotFound(classId)
         };
 
         return candidate;
     };
 
     async getAllClasses(schoolId) {
-        let classes;
-        if (!schoolId){
-            classes = await Class.findAndCountAll();
-        }else {
-            classes = await Class.findAndCountAll({
-                where: { schoolId }
-            });
-        };
-        
-        if (!classes){
-            APIError.errorCandidateNotFound(null)
-        };
+        const classes = await Class.findAndCountAll({
+            where: { schoolId }
+        });
+
         return classes;
     };
 };

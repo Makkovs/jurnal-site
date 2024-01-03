@@ -1,45 +1,38 @@
-const errorHandler = require("../utils/errorHandler");
 const schoolService = require("../services/schoolService");
-const APIError = require("../utils/APIError");
 
 class SchoolController {
 
-    async createSchool(req, res) {
-        errorHandler(async () => {
+    async createSchool(req, res, next) {
+        try {
             const { schoolName } = req.body;
-            if (!schoolName) {
-                APIError.errorUndefinedArg();
-            };
 
             const newSchool = await schoolService.createSchool(schoolName);
-
             return res.json({ newSchool });
-        })(req, res);
+        } catch (error) {
+            next(error);
+        };
     };
 
-    async deleteSchool(req, res) {
-        errorHandler(async () => {
+    async deleteSchool(req, res, next) {
+        try {
             const { schoolId } = req.body;
-            if (!schoolId) {
-                APIError.errorUndefinedArg();
-            };
 
             await schoolService.deleteSchool(schoolId);
-
             return res.json({ message: `School with id ${schoolId} was deleted` });
-        })(req, res);
+        } catch (error) {
+            next(error);
+        };
     };
 
-    async getSchool(req, res) {
-        errorHandler(async () => {
+    async getSchool(req, res, next) {
+        try {
             const { schoolId } = req.query;
-            if (!schoolId) {
-                APIError.errorUndefinedArg();
-            };
 
             const school = await schoolService.getSchool(schoolId);
             return res.json({ school });
-        })(req, res);
+        } catch (error) {
+            next(error);
+        };
     };
 };
 
