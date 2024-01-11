@@ -8,15 +8,18 @@ module.exports = function (req, res, next) {
     
     try {
         const authHeader = req.headers.authorization;
+        if (!authHeader){
+            next(APIError.errorUnLogged());
+        };
         const token = authHeader.split(" ")[1];
-        if (!authHeader || !token) {
-            APIError.errorUnLogged();
+        if (!token) {
+            next(APIError.errorUnLogged());
         };
         
         const decoded = jwt.verify(token, process.env.SECRET_KEY);
         req.user = decoded;
         next();
     } catch (error) {
-        return res.status(400).json({ error: `${error}` });
+        next(error);
     };
 };

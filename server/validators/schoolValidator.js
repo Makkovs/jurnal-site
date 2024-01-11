@@ -3,27 +3,42 @@ const APIError = require("../utils/APIError");
 class SchoolValidator {
 
     async validateCreateSchool(req, res, next) {
-        const { schoolName } = req.body;
-        if (!schoolName) {
-            next(APIError.errorUndefinedArg());
+        try {
+            const { schoolName } = req.body;
+            if (!schoolName) {
+                next(APIError.errorUndefinedArg());
+            } else {
+                next();
+            };
+        } catch (error) {
+            next(error);
         };
-        next();
     };
 
     async validateDeleteSchool(req, res, next) {
-        const { schoolId } = req.body;
-        if (!schoolId) {
-            next(APIError.errorUndefinedArg());
+        try {
+            const { schoolId } = req.body;
+            if (!schoolId) {
+                next(APIError.errorUndefinedArg());
+            } else {
+                next();
+            };
+        } catch (error) {
+            next(error);
         };
-        next();
     };
 
     async validateGetSchool(req, res, next) {
-        const { schoolId } = req.query;
-        if (!schoolId) {
-            next(APIError.errorUndefinedArg());
+        try {
+            const { schoolId } = req.query;
+            if (!schoolId) {
+                next(APIError.errorUndefinedArg());
+            } else {
+                next();
+            };
+        } catch (error) {
+            next(error);
         };
-        next();
     };
 };
 

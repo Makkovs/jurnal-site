@@ -3,59 +3,94 @@ const APIError = require("../utils/APIError");
 class ClassValidator {
 
     async validateCreateClass(req, res, next) {
-        const { year, letter, teacherId, schoolId } = req.body;
-        if (!year || !letter || !teacherId || !schoolId) {
-            next(APIError.errorUndefinedArg());
-        };
-        next();
-    };
+        try {
+            const { year, letter, teacherId, schoolId } = req.body;
+            if (!year || !letter || !teacherId || !schoolId) {
+                next(APIError.errorUndefinedArg());
+            } else {
+                next();
+            }
+        } catch (error) {
+            next(error);
+        }
+    }
 
     async validateDeleteClass(req, res, next) {
-        const { classId } = req.body;
-        if (!classId) {
-            next(APIError.errorUndefinedArg());
-        };
-        next();
-    };
+        try {
+            const { classId } = req.body;
+            if (!classId) {
+                next(APIError.errorUndefinedArg());
+            } else {
+                next();
+            }
+        } catch (error) {
+            next(error);
+        }
+    }
 
     async validateSetYear(req, res, next) {
-        const { classId, year } = req.body;
-        if (!classId || !year) {
-            next(APIError.errorUndefinedArg());
-        };
-        next();
-    };
+        try {
+            const { classId, year } = req.body;
+            if (!classId || !year) {
+                next(APIError.errorUndefinedArg());
+            } else {
+                next();
+            }
+        } catch (error) {
+            next(error);
+        }
+    }
 
     async validateSetLetter(req, res, next) {
-        const { classId, letter } = req.body;
-        if (!classId || !letter) {
-            next(APIError.errorUndefinedArg());
+        try {
+            const { classId, letter } = req.body;
+            if (!classId || !letter) {
+                next(APIError.errorUndefinedArg());
+            } else {
+                next();
+            };
+        } catch (error) {
+            next(error);
         };
-        next();
     };
 
     async validateSetTeacher(req, res, next) {
-        const { classId, teacherId } = req.body;
-        if (!classId || !teacherId) {
-            next(APIError.errorUndefinedArg());
+        try {
+            const { classId, teacherId } = req.body;
+            if (!classId || !teacherId) {
+                next(APIError.errorUndefinedArg());
+            } else {
+                next();
+            };
+        } catch (error) {
+            next(error);
         };
-        next();
     };
 
     async validateGetOneClass(req, res, next) {
-        const { classId } = req.query;
-        if (!classId) {
-            next(APIError.errorUndefinedArg());
+        try {
+            const { classId } = req.query;
+            if (!classId) {
+                next(APIError.errorUndefinedArg());
+            } else {
+                next();
+            };
+        } catch (error) {
+            next(error);
         };
-        next();
     };
 
     async validateGetAllClasses(req, res, next) {
-        const { schoolId } = req.query;
-        if (!schoolId) {
-            next(APIError.errorUndefinedArg());
+        try {
+            const { schoolId } = req.query;
+            if (!schoolId) {
+                next(APIError.errorUndefinedArg());
+            } else {
+                next();
+            };
+        } catch (error) {
+            next(error);
         };
-        next();
     };
 };
 

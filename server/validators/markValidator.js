@@ -1,58 +1,59 @@
 const APIError = require("../utils/APIError");
 
-class LessonValidator {
+class MarkValidator {
 
-    async validateCreateLesson(req, res, next) {
+    async validateCreateMark(req, res, next) {
         try {
-            const { lessonName, schoolId } = req.body;
-            if (!lessonName || !schoolId) {
+            const { mark, lessonId, userId, teacherId, date } = req.body;
+            if (!mark || !lessonId || !userId || !teacherId || !date) {
                 next(APIError.errorUndefinedArg());
             } else {
                 next();
-            };
+            }
         } catch (error) {
             next(error);
         };
     };
 
-    async validateDeleteLesson(req, res, next) {
+    async validateDeleteMark(req, res, next) {
         try {
-            const { lessonId } = req.body;
-            if (!lessonId) {
+            const { markId } = req.body;
+            if (!markId) {
                 next(APIError.errorUndefinedArg());
             } else {
                 next();
-            };
+            }
         } catch (error) {
             next(error);
         };
     };
 
-    async validateGetOneLesson(req, res, next) {
+    async validateEditMark(req, res, next) {
         try {
-            const { lessonId } = req.query;
-            if (!lessonId) {
+            const { markId, mark } = req.body;
+            if (!markId || !mark) {
                 next(APIError.errorUndefinedArg());
             } else {
                 next();
-            };
+            }
         } catch (error) {
             next(error);
         };
     };
 
-    async validateGetAllLesson(req, res, next) {
+    async validateGetAllMarks(req, res, next) {
         try {
-            const { schoolId } = req.query;
-            if (!schoolId) {
+            const { lessonId, userId, teacherId } = req.query;
+
+            if (!lessonId && !teacherId && !userId) {
                 next(APIError.errorUndefinedArg());
             } else {
                 next();
-            };
+            }
         } catch (error) {
             next(error);
         };
     };
 };
 
-module.exports = new LessonValidator();
+module.exports = new MarkValidator();

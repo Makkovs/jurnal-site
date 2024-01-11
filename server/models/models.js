@@ -39,8 +39,9 @@ const Homework = sequelize.define("homework", {
 
 const Mark = sequelize.define("mark", {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-    date: { type: DataTypes.DATE, allowNull: false },
+    date: { type: DataTypes.DATEONLY, allowNull: false },
     number: { type: DataTypes.INTEGER, allowNull: false },
+    teacherId: { type: DataTypes.INTEGER, allowNull: false },
 });
 
 School.hasMany(Class);
