@@ -1,5 +1,6 @@
 const { Class } = require("../models/models");
 const APIError = require("../utils/APIError");
+const APIMessage = require("../utils/APIMessage");
 
 class ClassService {
 
@@ -26,7 +27,7 @@ class ClassService {
         };
 
         await Class.destroy({ where: { id: classId } });
-        return { message: `Class with id ${classId} was deleted!` };
+        return APIMessage.messageDeleted("Class", classId);
     };
 
     async setYear(classId, year) {
@@ -48,7 +49,7 @@ class ClassService {
             { year: year },
             { where: { id: classId } }
         );
-        return { message: `Class with id ${classId} was updated!` };
+        return APIMessage.messageUpdated("Class", classId);
     };
 
     async setLetter(classId, letter) {
@@ -70,7 +71,7 @@ class ClassService {
             { letter: letter },
             { where: { id: classId } }
         );
-        return { message: `Class with id ${classId} was updated!` };
+        return APIMessage.messageUpdated("Class", classId);
     };
 
     async setTeacher(classId, teacherId) {
@@ -85,7 +86,7 @@ class ClassService {
             { classTeacherId: teacherId },
             { where: { id: classId } }
         );
-        return { message: `Class with id ${classId} was updated!` };
+        return APIMessage.messageUpdated("Class", classId);
     };
 
     async getOneClass(classId) {

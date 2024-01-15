@@ -34,7 +34,8 @@ const User = sequelize.define("user", {
 
 const Homework = sequelize.define("homework", {
     id: { type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true },
-    body: { type: DataTypes.TEXT, allowNull: false }
+    body: { type: DataTypes.TEXT, allowNull: false },
+    date: { type: DataTypes.DATEONLY, allowNull: false },
 });
 
 const Mark = sequelize.define("mark", {
@@ -64,6 +65,9 @@ Homework.belongsTo(Class);
 
 Lesson.hasMany(Mark);
 Mark.belongsTo(Lesson);
+
+Lesson.hasMany(Homework);
+Homework.belongsTo(Lesson);
 
 Lesson.belongsToMany(Shedule, { through: "SheduleLesson" });
 Shedule.belongsToMany(Lesson, { through: "SheduleLesson" });

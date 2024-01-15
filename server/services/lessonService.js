@@ -1,5 +1,6 @@
 const { Lesson } = require("../models/models");
 const APIError = require("../utils/APIError");
+const APIMessage = require("../utils/APIMessage");
 
 class LessonService {
 
@@ -20,7 +21,7 @@ class LessonService {
         };
 
         await Lesson.destroy({ where: { id: lessonId } });
-        return { message: `Lesson with id ${lessonId} was deleted!` }
+        return APIMessage.messageDeleted("Lesson", lessonId);
     };
 
     async getOneLesson(lessonId) {

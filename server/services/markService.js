@@ -1,5 +1,6 @@
 const { Mark } = require("../models/models");
 const APIError = require("../utils/APIError");
+const APIMessage = require("../utils/APIMessage");
 
 class MarkService {
 
@@ -26,7 +27,7 @@ class MarkService {
         };
 
         await Mark.destroy({ where: { id: markId } });
-        return { message: `Mark with id ${markId} was deleted!` };
+        return APIMessage.messageDeleted("Mark", markId);
     };
 
     async editMark(markId, mark, user) {
@@ -39,7 +40,7 @@ class MarkService {
             { number: mark, userId: user.id },
             { where: { id: markId } }
         );
-        return { message: `Mark with id ${markId} was updated!` };
+        return APIMessage.messageUpdated("Mark", markId);
     };
 
     async getAllMarks(lessonId, userId, teacherId) {

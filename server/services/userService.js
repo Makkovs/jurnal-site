@@ -1,8 +1,10 @@
+const bcrypt = require("bcrypt");
+
 const { User, School } = require("../models/models");
 const hashPassword = require("../utils/hashPassword");
 const generateJwt = require("../utils/generateJwt");
 const APIError = require("../utils/APIError");
-const bcrypt = require("bcrypt");
+const APIMessage = require("../utils/APIMessage");
 
 class UserService {
 
@@ -54,7 +56,7 @@ class UserService {
             { where: { id: userId } }
         );
 
-        return { message: `User with id ${userId} ranged to class with id ${toClassId}!` };
+        return APIMessage.messageUserRanged(userId, toClassId);
     };
 
     async getOneUser(userId) {
