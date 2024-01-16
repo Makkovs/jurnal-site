@@ -53,24 +53,7 @@
     }
 
     .mainInfo__button {
-        cursor: pointer;
         margin-top: 50px;
-        padding: 10px;
-        width: max-content;
-
-        font-size: 20px;
-        transition: 0.3s;
-        border-radius: 10px;
-
-        text-decoration: none;
-
-        color: $header-font-color-second;
-        background: $header-color-second;
-
-        &:hover {
-            color: $header-font-color-second-hover;
-            background: $header-color-second-hover;
-        }
     }
 }
 

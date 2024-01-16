@@ -1,0 +1,34 @@
+@import "../../../utils/variables.scss";
+
+.body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    color: $header-font-color;
+
+    .title {
+        margin-bottom: 20px;
+    }
+
+    .input {
+        margin-top: 10px;
+        margin-bottom: 10px;
+    }
+    
+    .curator_name {
+        display: flex;
+        justify-content: space-between;
+        text-align: center;
+    }
+
+    .input_name {
+        width: 80px;
+        margin-left: 10px;
+    }
+
+    .errorMessage {
+        color: #9e0909;
+        margin-bottom: 10px;
+    }
+}

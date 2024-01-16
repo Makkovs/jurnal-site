@@ -1,0 +1,21 @@
+@import "../../../utils/variables.scss";
+
+.button {
+    cursor: pointer;
+    padding: 10px;
+    width: max-content;
+
+    font-size: 20px;
+    transition: 0.3s;
+    border-radius: 10px;
+
+    text-decoration: none;
+
+    color: $header-font-color-second;
+    background: $header-color-objects;
+
+    &:hover {
+        color: $header-font-color-second-hover;
+        background: $header-color-objects-hover;
+    }
+}

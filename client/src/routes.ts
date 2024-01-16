@@ -1,5 +1,5 @@
 import Home from "./pages/Home/Home";
-import SchoolRegistration from "./pages/SchoolRegistration/SchoolRegistration";
+import SchoolRegistration from "./pages/Home/SchoolRegistration/SchoolRegistration";
 import { IRoute } from "./types/routeInterface";
 import { HOME_ROUTE, SCHOOL_REGISTRATION_ROUTE } from "./utils/consts";
 

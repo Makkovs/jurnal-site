@@ -1,11 +1,14 @@
-import { FC } from "react";
-import { Link } from "react-router-dom";
+import { FC, useState } from "react";
 
-import { SCHOOL_REGISTRATION_ROUTE } from "../../utils/consts";
+import Modal from "../../components/UI/Modal/Modal";
+import SchoolRegistration from "./SchoolRegistration/SchoolRegistration";
 
 import styles from "./home.module.scss";
+import Button from "../../components/UI/Button/Button";
 
 const Home: FC = () => {
+
+    const [visible, setVisible] = useState<boolean>(false);
 
     return (
         <>
@@ -31,6 +34,9 @@ const Home: FC = () => {
                 </div>
             </header>
             <main className={styles.main}>
+                <Modal visible={visible} setVisible={setVisible}>
+                    <SchoolRegistration />
+                </Modal>
                 <article>
                     <section className={styles.mainInfo}>
                         <span className={styles.mainInfo__title}>
@@ -46,12 +52,12 @@ const Home: FC = () => {
                             corporis laboriosam, voluptate maiores accusantium. Consectetur, explicabo
                             sint? Veniam, libero quos!
                         </p>
-                        <Link
-                            className={styles.mainInfo__button}
-                            to={SCHOOL_REGISTRATION_ROUTE}
+                        <Button 
+                            className={styles.mainInfo__button} 
+                            onClick={() => setVisible(true)}
                         >
                             Реєстрація школи
-                        </Link>
+                        </Button>
                     </section>
                     <section className={styles.info}>
                         <span className={styles.info__title}>
