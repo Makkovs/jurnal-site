@@ -11,11 +11,35 @@
 
     text-decoration: none;
 
-    color: $header-font-color-second;
-    background: $header-color-objects;
+    color: $header-font-color-second-dark;
+    background: $header-color-objects-dark;
 
     &:hover {
-        color: $header-font-color-second-hover;
-        background: $header-color-objects-hover;
+        color: $header-font-color-second-hover-dark;
+        background: $header-color-objects-hover-dark;
+    }
+}
+
+:root[data-theme="ligth"] {
+    .button {
+        color: $header-font-color-second-ligth;
+        background: $header-color-objects-ligth;
+    
+        &:hover {
+            color: $header-font-color-second-hover-ligth;
+            background: $header-color-objects-hover-ligth;
+        }
+    }
+}
+
+:root[data-theme="dark"] {
+    .button {
+        color: $header-font-color-second-dark;
+        background: $header-color-objects-dark;
+    
+        &:hover {
+            color: $header-font-color-second-hover-dark;
+            background: $header-color-objects-hover-dark;
+        }
     }
 }

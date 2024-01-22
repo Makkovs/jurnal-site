@@ -7,5 +7,13 @@
 
 body {
     font-family: sans-serif;
-    background: $header-color;
+    transition: 0.3s;
+}
+
+:root[data-theme="ligth"] {
+    background: $header-color-ligth;
+}
+
+:root[data-theme="dark"] {
+    background: $header-color-dark;
 }

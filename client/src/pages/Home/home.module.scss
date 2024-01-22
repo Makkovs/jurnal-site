@@ -5,10 +5,18 @@
     align-items: center;
     justify-content: space-around;
 
-    color: $header-font-color;
-    background: $header-color;
     padding: 40px 30px 15px 30px;
     border-bottom: solid 1px black;
+    transition: 0.3s;
+
+    .header__element {
+        display: flex;
+        align-items: center;
+    }
+
+    .themeCheckbox {
+        margin-right: 20px;
+    }
 
     .nav {
         display: flex;
@@ -17,15 +25,6 @@
         .nav__link {
             cursor: pointer;
             margin-right: 40%;
-
-            &:hover {
-                color: $header-font-color-hover;
-                border-color: $header-font-color-hover;
-            }
-        }
-
-        .nav__link_selected {
-            border-bottom: solid 1px $header-font-color;
         }
     }
 }
@@ -36,8 +35,7 @@
     align-items: center;
 
     padding: 3% 20% 30px 20%;
-    background: $header-color;
-    color: $header-font-color;
+    transition: 0.3s;
 
     .mainInfo__title {
         font-size: 50px;
@@ -62,8 +60,7 @@
     flex-direction: column;
     align-items: center;
     padding: 3% 20% 30px 20%;
-    background: $header-color;
-    color: $header-font-color;
+    transition: 0.3s;
 
     .info__title {
         font-size: 50px;
@@ -89,5 +86,29 @@
 
     .info__can__title {
         font-size: 30px;
+    }
+}
+
+:root[data-theme="ligth"] {
+    .mainInfo {
+        color: $header-font-color-ligth;
+        background: $header-color-ligth;
+    }
+
+    .info {
+        color: $header-font-color-ligth;
+        background: $header-color-ligth;
+    }
+}
+
+:root[data-theme="dark"] {
+    .mainInfo {
+        background: $header-color-dark;
+        color: $header-font-color-dark;
+    }
+
+    .info {
+        background: $header-color-dark;
+        color: $header-font-color-dark;
     }
 }

@@ -4,5 +4,17 @@
     font-size: 20px;
     padding: 5px;
     border-radius: 5px;
-    border: 2px solid $header-color-objects;
+    border: 2px solid $header-color-objects-dark;
+}
+
+:root[data-theme="ligth"] {
+    .input {
+        border: 2px solid $header-color-objects-ligth;
+    }
+}
+
+:root[data-theme="dark"] {
+    .input {
+        border: 2px solid $header-color-objects-dark;
+    }
 }

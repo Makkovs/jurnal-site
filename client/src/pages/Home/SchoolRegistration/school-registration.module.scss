@@ -5,7 +5,7 @@
     flex-direction: column;
     align-items: center;
 
-    color: $header-font-color;
+    color: $header-font-color-dark;
 
     .title {
         margin-bottom: 20px;
@@ -30,5 +30,17 @@
     .errorMessage {
         color: #9e0909;
         margin-bottom: 10px;
+    }
+}
+
+:root[data-theme="ligth"] {
+    .body {
+        color: $header-font-color-ligth;
+    }
+}
+
+:root[data-theme="dark"] {
+    .body {
+        color: $header-font-color-dark;
     }
 }

@@ -1,10 +1,12 @@
 import { FC, useState } from "react";
 
 import Modal from "../../components/UI/Modal/Modal";
+import Button from "../../components/UI/Button/Button";
 import SchoolRegistration from "./SchoolRegistration/SchoolRegistration";
+import Header from "../../components/Header/Header";
 
 import styles from "./home.module.scss";
-import Button from "../../components/UI/Button/Button";
+
 
 const Home: FC = () => {
 
@@ -12,27 +14,7 @@ const Home: FC = () => {
 
     return (
         <>
-            <header className={styles.header}>
-                <div className={styles.header__element}>
-                    <h1>StudyScribe</h1>
-                </div>
-                <div className={styles.header__element}>
-                    <nav className={styles.nav}>
-                        <span className={[styles.nav__link, styles.nav__link_selected].join(" ")}>
-                            Головна
-                        </span>
-                        <span className={styles.nav__link}>
-                            Щоденник
-                        </span>
-                        <span className={styles.nav__link}>
-                            Розклад
-                        </span>
-                        <span className={styles.nav__link}>
-                            Увійти
-                        </span>
-                    </nav>
-                </div>
-            </header>
+            <Header />
             <main className={styles.main}>
                 <Modal visible={visible} setVisible={setVisible}>
                     <SchoolRegistration />

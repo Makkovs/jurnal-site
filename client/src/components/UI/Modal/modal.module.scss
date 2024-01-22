@@ -14,7 +14,6 @@
         padding: 25px;
         border-radius: 5px;
         min-width: 250px;
-        background-color: $header-color-second;
         max-height: 90vh;
         overflow-y: auto;
     }
@@ -24,4 +23,16 @@
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+:root[data-theme="ligth"] {
+    .modalContent {
+        background-color: $header-color-second-ligth;
+    }
+}
+
+:root[data-theme="dark"] {
+    .modalContent {
+        background-color: $header-color-second-dark;
+    }
 }

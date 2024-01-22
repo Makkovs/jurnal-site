@@ -1,8 +1,8 @@
 import { FC } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 
-import { router } from "../routes";
-import { HOME_ROUTE } from "../utils/consts";
+import { router } from "../../routes";
+import { HOME_ROUTE } from "../../utils/consts";
 
 const AppRouter: FC = () => {
     return (
